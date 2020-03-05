@@ -1,0 +1,33 @@
+(6 COMBINATIONS) (6 DONE) (0 LEFT)(TRANSFER FINISHED)
+1 = DOING
+2 = TO DO
+3 = DONE
+
+1 - 2  XXX     Doing - To Do
+1 - 3  XXX     Doing - Done
+2 - 1  XXX     To Do - Doing
+2 - 3  XXX     To Do - Done
+3 - 1  XXX     Done  - Doing
+3 - 2  XXX     Done  - To Do
+
+CALLS:
+doing
+Todo
+done
+
+Tasks:
+Choose task(DONE)
+Transfer task(DONE)
+Remove Orignal Task(DONE)
+	Take inputted line number(DONE)
+	load File into a list(DONE)
+	Pop chosen line number(index)(DONE)
+        Overwrite current file with list(DONE)
+
+Create transfer function
+	Shorten 1 - 2 transfer
+		find common variables
+COMMON COPIES:
+	print(40 * '-')
+	if fchoice == 1 and tchoice == 2 :
+

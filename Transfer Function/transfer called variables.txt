@@ -1,0 +1,17 @@
+Variables called and created in transfer:
+filepath = gives locaition of original file
+line = repeatedly used to print all task
+cnt = add up total tasks in file
+tnumchoice = the task number that the person wants to move
+lines = call to read a file
+chosentask = the associated line with the number given (tnumchoice)
+tasklist = a list of all the task in a file
+
+Variables ssigned mid function (edit):
+filepath
+tnumchoice
+lines = doing.readlines() e.g.
+chosentask
+doing 
+Todo
+
