@@ -9,34 +9,7 @@ doneprint = "You have DONE thse tasks:\n"
 doingadd = "You are adding to the DOING list"
 todoadd = "You are adding to the TO DO list"
 doneprint = "You are adding to the DONE list"
-def edit(filepath1, msg1):
-    #Display original file
-    with open(filepath1) as fp:
-       line = fp.readline()
-       cnt = 1
-       print(msg1)
-       while line:
-           print("Task {}: {}".format(cnt, line.strip()))
-           line = fp.readline()
-           cnt += 1
-    print(61 * '-')
-    sleep(0.25)
-    #User chooses task to move
-    tnumchoice  = int(input("Choose a task number from the list of tasks to edit [x] : "))
-    #file reads and assigns the line contents
-    chosentask = linecache.getline(filepath1 , tnumchoice)
-    #Display choice and remove unnecercary charcters
-    chosentask = str(chosentask)
-    chosentask = chosentask.strip("['")
-    chosentask = chosentask.strip("']")
-    chosentask = chosentask.strip("n")
-    chosentask = chosentask.rstrip("\n")
 
-    doing.close()
-    Todo.close()
-    #User inputs replacement task
-    editedtask = input("What would you like to edit the task to?: ")
-    
 def transfer(filepath1, filepath2 ,msg1 ,msg2):
     #Display original file
     with open(filepath1) as fp:
