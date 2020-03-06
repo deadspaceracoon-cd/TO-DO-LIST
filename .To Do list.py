@@ -9,9 +9,8 @@ doneprint = "You have DONE thse tasks:\n"
 doingadd = "You are adding to the DOING list"
 todoadd = "You are adding to the TO DO list"
 doneprint = "You are adding to the DONE list"
-
-def transfer(filepath1, filepath2 ,msg1 ,msg2):
-    #Display DOING
+def edit(filepath1, msg1):
+    #Display original file
     with open(filepath1) as fp:
        line = fp.readline()
        cnt = 1
@@ -20,11 +19,38 @@ def transfer(filepath1, filepath2 ,msg1 ,msg2):
            print("Task {}: {}".format(cnt, line.strip()))
            line = fp.readline()
            cnt += 1
-    print(61 * '-')      
+    print(61 * '-')
     sleep(0.25)
-    #Display TO DO
+    #User chooses task to move
+    tnumchoice  = int(input("Choose a task number from the list of tasks to edit [x] : "))
+    #file reads and assigns the line contents
+    chosentask = linecache.getline(filepath1 , tnumchoice)
+    #Display choice and remove unnecercary charcters
+    chosentask = str(chosentask)
+    chosentask = chosentask.strip("['")
+    chosentask = chosentask.strip("']")
+    chosentask = chosentask.strip("n")
+    chosentask = chosentask.rstrip("\n")
+
+    doing.close()
+    Todo.close()
+    #User inputs replacement task
+    editedtask = input("What would you like to edit the task to")
+def transfer(filepath1, filepath2 ,msg1 ,msg2):
+    #Display original file
+    with open(filepath1) as fp:
+       line = fp.readline()
+       cnt = 1
+       print(msg1)
+       while line:
+           print("Task {}: {}".format(cnt, line.strip()))
+           line = fp.readline()
+           cnt += 1
+    print(61 * '-')
+    sleep(0.25)
+    #Display secondary file
     with open(filepath2) as fp:
-        
+
         line = fp.readline()
         cnt = 1
         print(msg2)
@@ -33,7 +59,7 @@ def transfer(filepath1, filepath2 ,msg1 ,msg2):
             line = fp.readline()
             cnt += 1
     print(61 * '-')
-    #User chooses task to move 
+    #User chooses task to move
     tnumchoice  = int(input("Choose a task number from the top set of tasks [x] : "))
     #file reads and assigns the line contents
     chosentask = linecache.getline(filepath1 , tnumchoice)
@@ -46,7 +72,7 @@ def transfer(filepath1, filepath2 ,msg1 ,msg2):
 
     doing.close()
     Todo.close()
-    
+
     #Adds chosen line ot another file (no base)
     with open(filepath2, "a+") as file_object:
             file_object.seek(0)
@@ -62,7 +88,7 @@ def transfer(filepath1, filepath2 ,msg1 ,msg2):
     print("Removing redundant task...")
     print(61 * '-')
     sleep(0.75)
-    
+
     #Removes moved task from old file (base 0)
     with open(filepath1) as f:
             tasklist = f.read().splitlines()
@@ -72,7 +98,7 @@ def transfer(filepath1, filepath2 ,msg1 ,msg2):
     with open(filepath1, 'w') as filehandle:
         filehandle.writelines("%s\n" % line for line in tasklist)
     filehandle.close()
-    
+
 def add_task(inputfile, msg):
         print(msg)
         print(61 * '-')
@@ -93,7 +119,7 @@ def add_task(inputfile, msg):
         sleep(0.25)
         print("You are being returned to the Main Menu")
         sleep(1.25)
-                              
+
 #open all core files
 doing = open("Doing.txt", "r")
 Todo = open("To Do.txt" ,"r")
@@ -109,13 +135,13 @@ while loop:
         print ("3. Add Item")
         print ("4. Quit")
         print (61 * '-')
-         
+
         #Get input
         choice = input('Enter your choice [1-4] : ')
-         
+
         #Convert string to int type
         choice = int(choice)
-         
+
         #Take action as per selected menu-option
         if choice == 1:
 
@@ -137,8 +163,8 @@ while loop:
                 print("You are being returned to the Main Menu")
 
                 sleep(1.25)
-                                            
-        #option for transfer code        
+
+        #option for transfer code
         elif choice == 2:
                 print(61 * '-')
                 print ("Loading Files...")
@@ -152,7 +178,7 @@ while loop:
                 print (61 * '-')
                #Get input
                 fchoice = input('Enter your choice [1-3] : ')
-                sleep(0.25)      
+                sleep(0.25)
                #Convert string to int type
                 fchoice = int(fchoice)
                 #Show menu
@@ -165,7 +191,7 @@ while loop:
                 print (61 * '-')
                #Get input
                 tchoice = input('Enter your choice [1-3] : ')
-                sleep(0.25) 
+                sleep(0.25)
                #Convert string to int type
                 tchoice = int(tchoice)
                 #prevents copying to the same file
@@ -182,7 +208,7 @@ while loop:
                         print("You are being returned to the Main Menu")
 
                         sleep(0.25)
-                        
+
                     elif tchoice == 1 and fchoice == 3:
                         print(61 * '-')
                         print("You have chosen to move an item from DOING to DONE")
@@ -191,7 +217,7 @@ while loop:
                         print("You are being returned to the Main Menu")
 
                         sleep(0.25)
-                        
+
                     elif tchoice == 2 and fchoice == 1:
                         print(61 * '-')
                         print("You have chosen to move an item from TO DO to DOING")
@@ -200,16 +226,16 @@ while loop:
                         print("You are being returned to the Main Menu")
 
                         sleep(0.25)
-                        
+
                     elif tchoice == 2 and fchoice == 3:
                         print(61 * '-')
                         print("You have chosen to move an item from TO DO to DONE")
                         print(61 * '-')
                         transfer("to do.txt", "done.txt" ,todoprint, doneprint)
                         print("You are being returned to the Main Menu")
- 
+
                         sleep(0.25)
-                        
+
                     elif tchoice == 3 and fchoice == 1:
                         print(61 * '-')
                         print("You have chosen to move an item from DONE to TO DO")
@@ -218,7 +244,7 @@ while loop:
                         print("You are being returned to the Main Menu")
 
                         sleep(0.25)
-                        
+
                     elif tchoice == 3 and fchoice == 2:
                         print(61 * '-')
                         print("You have chosen to move an item from DOING to TO DO")
@@ -227,8 +253,8 @@ while loop:
                         print("You are being returned to the Main Menu")
 
                         sleep(0.25)
-                         
-        #optionn for adding a task       
+
+        #optionn for adding a task
         elif choice == 3:
                 print ("Loading Files...")
                #Show menu
@@ -242,7 +268,7 @@ while loop:
                #Get input
                 achoice = input('Enter your choice [1-3] : ')
                 sleep(0.25)
-                 
+
                #Convert string to int type
                 achoice = int(achoice)
 
@@ -252,7 +278,7 @@ while loop:
                 else:
                     if achoice == 1:
                             add_task("Doing.txt", doingadd)
-                        
+
                     if achoice == 2:
                             add_task("to do.txt", todoadd)
                     if achoice == 3:
@@ -262,6 +288,6 @@ while loop:
                 print("Thank you for using the to do list")
                 print(61 * '-')
                 loop = False
-                    
-        else:   
+
+        else:
                 print ("Invalid number. HIGHER THEN 4")
