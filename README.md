@@ -1,1 +1,1 @@
-Use the core .ToDolist.py to use the software all other files are either to write to or are for my personal useage
+use the .to do list.py for the software, ignore everything else
