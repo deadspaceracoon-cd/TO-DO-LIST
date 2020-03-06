@@ -6,12 +6,11 @@ tnumchoice = the task number that the person wants to move
 lines = call to read a file
 chosentask = the associated line with the number given (tnumchoice)
 tasklist = a list of all the task in a file
-
+filepath2 =the location of the tranferee file
 Variables ssigned mid function (edit):
 filepath
 tnumchoice
 lines = doing.readlines() e.g.
 chosentask
-doing 
+doing
 Todo
-
