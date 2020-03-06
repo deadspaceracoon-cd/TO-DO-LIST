@@ -35,7 +35,8 @@ def edit(filepath1, msg1):
     doing.close()
     Todo.close()
     #User inputs replacement task
-    editedtask = input("What would you like to edit the task to")
+    editedtask = input("What would you like to edit the task to?: ")
+    
 def transfer(filepath1, filepath2 ,msg1 ,msg2):
     #Display original file
     with open(filepath1) as fp:
