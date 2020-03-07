@@ -2,13 +2,18 @@ from time import sleep
 import linecache
 
 #intros for tranfer
-doingprint = "You are DOING these tasks:\n"
-todoprint = "You are TO DO these tasks:\n"
-doneprint = "You have DONE thse tasks:\n"
+doingprint = "You are DOING these tasks:"
+todoprint = "You are TO DO these tasks:"
+doneprint = "You have DONE thse tasks:"
 #intros for adding
 doingadd = "You are adding to the DOING list"
 todoadd = "You are adding to the TO DO list"
 doneprint = "You are adding to the DONE list"
+#intros for editing
+doingedit = "You are editing to the DOING list"
+todoedit = "You are editing to the TO DO list"
+doneedit = "You are editing the DONE list"
+
 def edit(filepath1, msg1):
     #Display original file
     with open(filepath1) as fp:
@@ -38,7 +43,7 @@ def edit(filepath1, msg1):
     sleep(0.25)
     #User inputs replacement task
     editedtask = input("What would you like to edit the task to?: ")
-
+    print(61 * '-')
     #Remove old task
     with open(filepath1) as f:
         tasklist = f.read().splitlines()
@@ -49,9 +54,21 @@ def edit(filepath1, msg1):
         filehandle.writelines("%s\n" % line for line in tasklist)
     filehandle.close()
     #Add new task in place of the old one
+    print("Adding new task...")
+    print(61 * '-')
+    #Adds chosen line ot another file (no base)
+    with open(filepath1, "a+") as file_object:
+            file_object.seek(0)
+            data = file_object.read(100)
+            if len(data) > 0:
+                    file_object.write("\n")
+            file_object.write(editedtask)
+    print("Task edited")
+    print(61 * '-')
+    sleep(0.25)
+    print("You are being returned to the main menu")
 
 
-###################################################################################
 def transfer(filepath1, filepath2 ,msg1 ,msg2):
     #Display original file
     with open(filepath1) as fp:
@@ -148,11 +165,12 @@ while loop:
         print ("1. View List")
         print ("2. Move Item")
         print ("3. Add Item")
-        print ("4. Quit")
+        print ("4. Edit Item")
+        print ("5. Quit")
         print (61 * '-')
 
         #Get input
-        choice = input('Enter your choice [1-4] : ')
+        choice = input('Enter your choice [1-5] : ')
 
         #Convert string to int type
         choice = int(choice)
@@ -165,14 +183,17 @@ while loop:
                 print(16 * '-', " V I E W - A L L - L I S T S ", 14 * '-')
                 print (61 * '-')
                 print("These are the tasks you are doing:")
+                doing = open("doing.txt", "r")
                 print(doing.read())
                 print(61 * '-')
                 sleep(1.5)
                 print("These are the tasks to do:")
+                Todo = open("To do.txt", "r")
                 print(Todo.read())
                 print(61 * '-')
                 sleep(1.5)
                 print("These are the tasks you have done:")
+                Done = open("done.txt", "r")
                 print(Done.read())
                 print(61 * '-')
                 print("You are being returned to the Main Menu")
@@ -299,6 +320,33 @@ while loop:
                     if achoice == 3:
                             add_task("done.txt", doneadd)
         elif choice == 4:
+            #Show menu
+            print(61 * '-')
+            print(14 * '-', " E D I T - W H I C H - L I S T? ", 14 * '-')
+            print(61 * '-')
+            print("1. Doing")
+            print("2. To Do")
+            print("3. Done")
+            print( 61 * '-')
+            #Get input
+            echoice = input("Enter your choice [1-3] : ")
+            sleep(0.25)
+
+            #Convert string into int
+            echoice = int(echoice)
+
+            #Prevents a number higher then 3
+            if echoice >3:
+                print("INVALID NUMBER, HIGHER THEN 3")
+            else:
+                if echoice == 1:
+                    edit("Doing.txt", doingedit)
+                if echoice == 2:
+                    edit("to do.txt", todoedit)
+                if echoice == 3:
+                    edit("done.txt", doneedit)
+
+        elif choice == 5:
                 print(25 *'-', " Q U I T ", 25 * '-')
                 print("Thank you for using the to do list")
                 print(61 * '-')
