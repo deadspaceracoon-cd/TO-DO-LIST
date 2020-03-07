@@ -41,6 +41,7 @@ def edit(filepath1, msg1):
     Todo.close()
     print(61 * '-')
     sleep(0.25)
+
     #User inputs replacement task
     editedtask = input("What would you like to edit the task to?: ")
     print(61 * '-')
@@ -56,13 +57,14 @@ def edit(filepath1, msg1):
     #Add new task in place of the old one
     print("Adding new task...")
     print(61 * '-')
-    #Adds chosen line ot another file (no base)
+
     with open(filepath1, "a+") as file_object:
             file_object.seek(0)
             data = file_object.read(100)
             if len(data) > 0:
                     file_object.write("\n")
             file_object.write(editedtask)
+
     print("Task edited")
     print(61 * '-')
     sleep(0.25)
@@ -156,6 +158,8 @@ def add_task(inputfile, msg):
 doing = open("Doing.txt", "r")
 Todo = open("To Do.txt" ,"r")
 Done = open("Done.txt", "r")
+
+#Keeps menu looping until the user wants close the app
 loop = True
 while loop:
         #Show menu
@@ -353,4 +357,4 @@ while loop:
                 loop = False
 
         else:
-                print ("Invalid number. HIGHER THEN 4")
+                print ("Invalid number. HIGHER THEN 5")
