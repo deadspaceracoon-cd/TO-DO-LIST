@@ -1,4 +1,2 @@
-Fix bugs
 Reading a book
-
 Remove code
